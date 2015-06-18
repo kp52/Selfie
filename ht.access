@@ -1,0 +1,10 @@
+## ADD following to Apache .htaccess if using .htaccess password protection
+
+## for PHP_AUTH with CGI version of PHP ##
+## RewriteEngine on
+## RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization},last]
+## ------------------------ ##
+
+SetEnv no-gzip dont-vary
+RewriteRule ^(.*)$ $1 [NS,E=no-gzip:1,E=dont-vary:1]
+

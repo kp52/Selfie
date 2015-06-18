@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Selfie - Clipper site backup</title>
+	<script src="EventSource.js"></script>
+
+	<!--[if lt IE 9]>
+<script src="/assets/js/html5/html5shiv.js"></script>
+<![endif]-->
+
+    </head>
+    <body>
+
+<form action="" method="post">
+<input type="hidden" name="clipper" id="clipper" value="<?php echo $clipperConfig ?>" />
+<input type="hidden" name="archive" id="archive" value="<?php echo $archive ?>" />
+<input type="hidden" name="archiveUrl" id="archiveUrl" value="<?php echo $archiveUrl ?>" />
+<input type="hidden" name="archiveFile" id="archiveFile" value="<?php echo $archiveFile ?>" />
+
+<div class="row">
+<label for="folder-assets">Assets</label>
+<input type="checkbox" name="folders[]" id="folder-assets" value="assets" <?php
+if (in_array('assets', $folders)) {echo 'checked="checked" ';} ?>
+>
+</div>
+
+<div class="row">
+<label for="folder-manager">Manager</label>
+<input type="checkbox" name="folders[]" id="folder-manager" value="manager" <?php
+if (in_array('manager', $folders)) {echo 'checked="checked" ';} ?>
+>
+</div>
+
+<div class="row">
+<label for="rootFiles" <?php if (empty($config['rootFiles'])) {echo 'style="color: #CCC;"';}?>>Root files</label>
+<input type="checkbox" name="rootFiles" id="rootFiles" <?php echo 'value="' . $rootList . '" ' ;
+if (!empty($config['rootFiles'])) {echo 'checked="checked" ';} else {echo 'disabled=disabled';} ?>
+>
+</div>
+
+<div class="row">
+<label for="database">Database</label>
+<input type="checkbox" name="database" id="database" checked="checked">
+</div>
+
+<input type="button" onclick="startTask()" value="Start">
+
+</form>
+
+<progress id="progressor" value="0"></progress> <div id="percentage"></div>
+<div id="results"></div>
+
+<script src="progressor.js"></script>
+</body>
+</html>
